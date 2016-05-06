@@ -23,7 +23,7 @@ Its mean is basicaly same as general social network service but we made some fun
 
 ## Bug
 
-It has some bugs that DB connection when replies are matching with posts. However, I have been known until now that how to fix it.
+It has some bugs that DB connection when replies are matching with posts. However, I have been known how to fix it since found this bugs.
 
 ## Etc.
 
