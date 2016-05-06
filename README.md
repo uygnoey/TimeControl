@@ -7,11 +7,19 @@ Its mean is basicaly same as general social network service but we made some fun
 
 ### Team Member
 
-Team Leader : Yeongyu Yang (me)
-Team Member : Hyemi Park
-              Juhee Choi
-              Sami Kim
-              Myeongjin Jung
+Team Leader 
+
+    Yeongyu Yang (me)
+
+Team Member 
+
+    Hyemi Park
+
+    Juhee Choi
+
+    Sami Kim
+
+    Myeongjin Jung
 
 ## The Main Function 
 
