@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+.divPostInput {
+	width: 90%;
+	margin: 0px auto;
+}
+
+.postInput {
+	width: 100%;
+}
+
+.postBtn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.categoryTitle{
+	width: 100%;
+	margin-top: 100px;
+}
+.category1Title {
+	width: 50%;
+	float: left;
+	text-align:center;
+}
+
+.category2Title {
+	width: 50%;
+	float: right;
+	text-align:center;
+}
+
+.category1 {
+	width: 49.5%;
+	float: left;
+	padding-right: 4.5px;
+	border-right: 1px solid #333;
+}
+
+.category2 {
+	width: 49.5%;
+	float: right;
+	padding-left: 4.5px;
+	border-left: 1px solid #333;
+}
+
+.postCard {
+	margin: 5px auto;
+	width: 70%;
+	border: 1px solid #333;
+}
+
+.post {
+	margin: 2px auto;
+	width: 95%;
+}
+
+.reply {
+	margin: 2px auto;
+	width : 95%;
+}
+
+.replyContent {
+	width: 80%;
+}

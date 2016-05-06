@@ -1,0 +1,239 @@
+@CHARSET "UTF-8";
+/* 메인 레이아웃 구성 */
+body {
+	margin: 0px auto;
+	font-family: sans-serif, serif;
+}
+
+#container {
+	margin: 0px auto;
+}
+
+/* top(상단바) 구성 */
+.top {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	background-color: #36D7B7;
+	color: #264348;
+	box-shadow: 0px 0px 8px 0px #333;
+	z-index: 1;
+}
+
+.top .h5 {
+	font-color: #264348;
+}
+
+.wrapHeader {
+	margin: 0px auto;
+	margin-top: 10px;
+	width: 1200px;
+}
+
+.top form {
+	display: inline;
+}
+
+/* 오른쪽 메뉴 */
+.headerRight {
+	float: right;
+	margin-right: 20px;
+}
+
+/* 왼쪽 메뉴 */
+.headerLeft {
+	float: left;
+	margin-left: 20px;
+}
+
+/* 로고 */
+.divLogo {
+	margin: 0px auto;
+	width: 40px;
+	height: 40px;
+	display: inline;
+}
+
+/* 친구검색 */
+.divSearch {
+	margin: 0px auto;
+	margin-left: 10px;
+	display: inline;
+}
+
+/* 알림 */
+.divAlert {
+	margin: 0px auto;
+	margin-right: 10px;
+	width: 40px;
+	height: 40px;
+	display: inline;
+	font-color:white;
+}
+
+.divAlert a {
+	text-decoration: none;
+}
+
+/* 로그아웃 */
+.divLogout {
+	margin: 0px auto;
+	display: inline;
+}
+
+/* 상단바 + 메인 컨텐츠 박스구성 */
+.wrap {
+	margin: 0px auto;
+	padding-top: 60px;
+	width: 1200px;
+}
+/* side(사이드바) 구성 */
+.left {
+	margin-top: 10px;
+	position: fixed;
+	width: 200px;
+	padding-top: 10px;
+	float: left;
+	top: 50px;
+	font-size: 13px;
+	border-right: 2px solid #36D7B7;
+	height: 100%;
+}
+
+.side {
+	padding-right: 10px;
+	text-align: right;
+}
+
+.divMenu ul {
+	list-style-type: none;
+}
+
+.divMenu ul li {
+	padding: 10px;
+}
+
+.divMenu ul li a {
+	text-decoration: none;
+	color: #36D7B7;
+	font-weight:bold
+}
+
+.divMenu ul li a:hover {
+	text-decoration: underline;
+}
+
+.sideh4 {
+	display: inline;
+	font-size: 15px
+}
+
+.sideh4 a {
+	text-decoration: none;
+	color: black;
+}
+
+.sideh4 a:hover {
+	text-decoration: underline;
+}
+
+/* center(메인컨텐츠) 구성 */
+.right {
+	position: relative;
+	width: 1000px;
+	padding-top: 20px;
+	float: right;
+}
+
+.divPostInput {
+	margin: 0px auto;
+	margin-bottom: 0px;
+	padding: 10px;
+	width: 100%;
+}
+
+.postInput {
+	margin-top: 5px;
+	width: 100%;
+}
+
+.postBtn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.inline_left {
+	display: inline;
+	float: left;
+}
+
+.inline_right {
+	display: inline;
+	float: right;
+}
+
+#category {
+	margin-top: 100px;
+	margin: 0px auto;
+	padding: 10px;
+}
+
+.category {
+	padding-top: 30px;
+	position: relative;
+	top: 0px;
+	width: 49%;
+	max-width: 100%;
+}
+
+.catLeft {
+	float: left;
+}
+
+.catRight {
+	float: right;
+}
+
+.category1Title {
+	text-align: left;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #36D7B7;
+}
+
+.category2Title {
+	text-align: left;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #36D7B7;
+}
+
+.category1Card {
+	padding: 5px;
+}
+
+.category2Card {
+	padding: 5px;
+}
+
+.replyContent {
+	width: 80%;
+}
+
+.replyEditDel {
+	text-align: right;
+	float: right;
+	color: #333;
+}
+
+replyContentUpdate {
+	width: 100%;
+}
+
+/* 인증 성공 페이지 */
+.divCen {
+	padding-top: 300px;
+	margin: 0 auto;
+	width: 1200px;
+	text-align: center;
+}

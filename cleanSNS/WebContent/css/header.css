@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+.top {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 60px;
+	background-color: #333;
+	color: #fefefe;
+	z-index: 1;
+}
+
+.top .h5 {
+	color: #fefefe;
+}
+
+.wrapHeader {
+	margin: 0px auto;
+	margin-top: 10px;
+	width: 1200px;
+}
+
+.top form {
+	display: inline;
+}
+
+/* 오른쪽 메뉴 */
+.headerRight {
+	float: right;
+	margin-right: 20px;
+}
+
+/* 왼쪽 메뉴 */
+.headerLeft {
+	float: left;
+	margin-left: 20px;
+}
+
+/* 로고 */
+.divLogo {
+	margin: 0px auto;
+	width: 40px;
+	height: 40px;
+	display: inline;
+
+}
+
+.divSearch {
+	margin: 0px auto;
+	margin-left: 10px;
+	display: inline;
+}
+
+.divAlert {
+	margin: 0px auto;
+	margin-right: 10px;
+	width: 40px;
+	height: 40px;
+	display: inline;
+	font-color:white;
+}
+
+.divAlert a {
+	text-decoration: none;
+}
+
+.divLogout {
+	margin: 0px auto;
+	display: inline;
+}
+
+.searchForm {
+	
+}
+
+.searchForm .searchInput {
+	
+}
+
+.searchForm .searchBtn {
+	
+
+}

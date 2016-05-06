@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+.alert_body {
+	margin: 0px auto;
+	padding: 5px;
+}
+
+.alert_content {
+	color: #333;
+}
+
+.alert_content a {
+	text-decoration: none;
+	color: #333;
+}
+
+.alert_date {
+	width: 150px;
+	text-align: center;
+	color: #333;
+}
+
+.alert_confirm {
+	width: 100px;
+	text-align: center;
+	color: #333;
+}

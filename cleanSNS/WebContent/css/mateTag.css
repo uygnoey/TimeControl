@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.parents{
+	position: relative; width: 380px; height: 180px;
+}
+
+.son1{
+	position: absolute; left: 22px;
+	font-size: small;
+}
+
+.size1{
+	width: 250px; height: 24px;
+}
+.size2{
+	width: 70px; height: 30px;
+}
+
+.son2{
+	position: absolute; left: 22px; top: 70px;
+	font-size: small;
+}
+
+span{ display: none; color: red;}

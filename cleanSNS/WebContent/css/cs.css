@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px auto;
+}
+
+.ComingSoon {
+	margin: 0px auto;
+	width: 800px;
+	height: 600px;
+	text-align: center;
+	padding-top: 100px;
+}
+
+a {
+	text-decoration: none;
+	color : #333;
+}
