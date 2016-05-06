@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop">
+
+
+	<context:annotation-config />
+
+	<!-- Oracle DB 연결 -->
+	<bean id="oracleDataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@mandelina.org:1521:xe" />
+		<property name="username" value="team01" />
+		<property name="password" value="team01$"  />
+	</bean>
+
+	<!-- DAO 설정 -->	
+	<bean id="LoginDAO" class="com.team01.dao.LoginDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+
+	<bean id="MemberDAO" class="com.team01.dao.MemberDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<bean id="replyDAO" class="com.team01.dao.ReplyDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<bean id="PwCheckDAO" class="com.team01.dao.PwCheckDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<bean id="LikeDAO" class="com.team01.dao.LikeDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean> 
+	
+	<bean id="HateDAO" class="com.team01.dao.HateDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+
+	</bean>  
+
+
+	<!-- <bean name="/loginform.htm" class="com.team01.template.LoginFormC" 
+		/> <bean name="/login.htm" class="com.team01.template.LoginC" /> -->
+
+	<!-- 카테고리 제목 -->
+	<bean class="com.team01.dao.CategoryDAO" id="CategoryDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+
+	<!-- PostDAO 설정 -->
+	<bean class="com.team01.dao.PostDAO" id="PostDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+	
+	
+	<!-- ReservePostDAO 설정 -->
+	<bean class="com.team01.dao.ReservePostDAO" id="ReservePostDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+	
+	<!-- MemberStayDAO 설정 -->
+	<bean class="com.team01.dao.MemberStayDAO" id="MemberStayDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<!-- 댓글 DAO 설정 -->
+	<bean class="com.team01.dao.ReplyDAO" id="ReplyDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<!-- 알림 DAO 설정 -->
+	<bean class="com.team01.dao.AlertDAO" id="AlertDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+	
+	<bean class="com.team01.dao.PostPhotoDAO" id="PostPhotoDAO">
+		<property name="dataSource" ref="oracleDataSource" />
+	</bean>
+
+	<!-- 뉴스피드 템플릿 -->
+	<bean name="/newsfeed.htm" class="com.team01.template.NewsFeedC">
+		<property name="dao" ref="ReservePostDAO"></property>
+	</bean>
+	<bean name="/header.htm" class="com.team01.template.HeaderC" >
+		<property name="aDao" ref="AlertDAO" />
+	</bean>
+	<bean name="/side.htm" class="com.team01.template.SideC" />
+	<bean name="/footer.htm" class="com.team01.template.FooterC" />
+	<bean name="/content.htm" class="com.team01.template.ContentC">
+		<property name="dao" ref="CategoryDAO"></property>
+	</bean>
+
+	<bean class="com.team01.dao.CleanerDAO" id="CleanerDAO">
+		<property name="dataSource" ref="oracleDataSource"/>
+	</bean>
+	<bean class="com.team01.postView.PostCardC" name="/allnewsfeed.htm">
+		<property name="dao" ref="PostDAO"></property>
+		<property name="rDao" ref="ReplyDAO"></property>
+	    <property name="likeDAO" ref="LikeDAO"></property>	<!--명진 추가 -->
+	 	<property name="hateDAO" ref="HateDAO"></property>	<!--명진 추가 -->
+	</bean>
+	
+	<bean class="com.team01.postView.LPostCardC" name="/leftnewsfeed.htm">
+		<property name="dao" ref="PostDAO"></property>
+		<property name="rDao" ref="ReplyDAO"></property>
+
+	    <property name="likeDAO" ref="LikeDAO"></property><!-- 	명진 추가  -->
+	    <property name="hateDAO" ref="HateDAO"></property><!-- 	명진 추가  -->
+
+	</bean>
+	
+	<bean class="com.team01.postView.RPostCardC" name="/rightnewsfeed.htm">
+		<property name="dao" ref="PostDAO"></property>
+		<!-- ReplyDAO -->
+		<property name="rDao" ref="ReplyDAO" />
+	    <property name="likeDAO" ref="LikeDAO"></property>	<!--명진 추가  -->
+	    <property name="hateDAO" ref="HateDAO"></property>	<!--명진 추가  -->
+	</bean>
+	
+	<bean name="/like.htm" class="com.team01.post.LikeC">
+		<property name="dao" ref="LikeDAO" />
+
+	</bean>
+	
+	<bean name="/likeCancel.htm" class="com.team01.post.LikeCancelC">
+		<property name="dao" ref="LikeDAO" />
+	</bean>
+	
+	<bean name="/hate.htm" class="com.team01.post.HateC">
+		<property name="dao" ref="HateDAO" />
+
+	</bean> 
+	
+	<bean name="/hateCancel.htm" class="com.team01.post.HateCancelC">
+		<property name="dao" ref="HateDAO" />
+
+	</bean>
+
+	
+	
+	<!-- 뉴스피드 VIEW -->
+	<bean name="/list.htm" class="com.team01.postView.ListC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	
+	<bean name="/rlist.htm" class="com.team01.postView.RListC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	
+
+	<bean name="/postwriterform.htm" class="com.team01.post.PostWriterFormC"></bean>
+	<bean name="/postwriter.htm" class="com.team01.post.PostWriterC">
+		<property name="dao" ref="PostDAO"></property>
+		<property name="rdao" ref="ReservePostDAO"></property>
+	</bean>
+	<bean name="/postdelete.htm" class="com.team01.post.PostDeleteC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	
+	<bean name="/updateform.htm" class="com.team01.post.PostUpdateFormC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	<bean name="/updatepost.htm" class="com.team01.post.PostUpdateC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+
+	<bean class="com.team01.postView.PostCardFormC" name="/newsfeedform.htm"/>	
+
+	
+	<!-- 댓글 관련 맵핑 시작 -->
+	<bean name="/replyDelete.htm" class="com.team01.reply.ReplyDeleteC">
+		<property name="dao" ref="ReplyDAO" />
+	</bean>
+	
+	<bean name="/replyinsert.htm" class="com.team01.reply.ReplyInsertC" >
+		<property name="dao" ref="ReplyDAO" />
+	</bean>
+	 
+	<bean name="/replyupdateform.htm" class="com.team01.reply.ReplyUpdateFormC">
+		<property name="dao" ref="ReplyDAO" />
+	</bean> 
+	
+	<bean name="/replyupdate.htm" class="com.team01.reply.ReplyUpdateC">
+		<property name="dao" ref="ReplyDAO" />
+	</bean>
+	<!-- 댓글 관련 맵핑 끝 -->
+	
+	<!-- 메일 인증 관련 맵핑 시작 -->
+	<bean name="/memberidentify.htm" class="com.team01.member.MemberIdentifyC">
+		<property name="dao" ref="MemberStayDAO" />
+	</bean>
+	<bean name="/registersuccess.htm" class="com.team01.mail.MailSuccessC" />
+	<bean name="/registerFailure.htm" class="com.team01.mail.MailFailureC" />
+	<!-- 메일 인증 관련 맵핑 끝 -->
+	
+	<!-- 알림 관련 맵핑 시작 -->
+	<bean name="/alert.htm" class="com.team01.alert.AlertC">
+		<property name="dao" ref="AlertDAO" />
+	</bean>
+	<bean name="/alertconfirm.htm" class="com.team01.alert.AlertConfirmC">
+		<property name="dao" ref="AlertDAO" />
+		<property name="pDao" ref="PostDAO" />
+		<property name="rDao" ref="ReplyDAO" />
+		<property name="likeDAO" ref="LikeDAO" />
+		<property name="hateDAO" ref="HateDAO" />
+	</bean>
+	<bean name="/alertcheck.htm" class="com.team01.alert.AlertDelCheckC">
+		<property name="dao" ref="AlertDAO" />
+	</bean>
+	<bean name="/alertmateconfirm.htm" class="com.team01.alert.AlertMateConfirmC">
+		<property name="dao" ref="AlertDAO" />
+	</bean>
+	<!-- 알림 관련 맵핑 끝 -->
+	<bean name="/loginform.htm" class="com.team01.login.LoginFormC" />
+	<bean name="/login.htm" class="com.team01.login.LoginC">
+		<property name="dao" ref="LoginDAO"></property>
+		<property name="mdao" ref="MemberDAO"></property>
+	</bean>
+	
+	<bean name="/reserveform.htm" class="com.team01.post.ReserveFormC"></bean>
+	<bean name="/matetagform.htm" class="com.team01.post.MateTagFormC"></bean>
+
+	
+	<bean name="/memberinsertform.htm" class="com.team01.member.MemberInsertFormC"></bean>
+	<bean name="/memberinsert.htm" class="com.team01.member.MemberInsertC">
+		<property name="dao" ref="MemberStayDAO"></property>
+	</bean>
+	
+	<bean name="/emailcheck.htm" class="com.team01.member.MemberEmailCheckC">
+		<property name="dao" ref="MemberDAO"></property>
+	</bean>
+	
+	<bean name="/ajax.htm" class="com.team01.member.MemberEmailCheckC">
+		<property name="dao" ref="MemberDAO"></property>
+	</bean>
+
+
+	<bean name="/logout.htm" class="com.team01.login.LogoutC"> </bean>
+
+	<bean name="/cleaner.htm" class="com.team01.postView.CleanerFormC"></bean>
+	<bean name="/cleanerform.htm" class="com.team01.postView.CleanerC">
+		<property name="dao" ref="CleanerDAO"></property>
+	</bean>
+	
+	<!-- mate관련 DAO -->
+	<bean id="mateDAO" class="com.team01.dao.MateDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+	
+	<bean name="/matetagsearch.htm" class="com.team01.mate.MateTagSearchC">
+		<property name="dao" ref="mateDAO"></property>
+	</bean>
+	
+	
+
+	<!-- story 관련 -->
+
+	<!-- 스토리 -->
+	<bean name="/storyview.htm" class="com.team01.story.StoryC">
+		<property name="dao" ref="ReservePostDAO"></property>
+	</bean>
+	
+
+	<bean name="/memberupdateform.htm" class="com.team01.member.MemberUpdateFormC">
+		<property name="dao" ref="CategoryDAO"></property>
+	</bean>
+	<bean name="/memberupdate.htm" class="com.team01.member.MemberUpdateC">
+		<property name="dao" ref="CategoryDAO" />
+		<property name="dao2" ref="MemberDAO" />
+	</bean>
+
+
+	<bean name="/storymatelist.htm" class="com.team01.story.StoryMateListFormC">
+		<property name="mateDAO" ref="mateDAO"></property>
+		<property name="cDAO" ref="CategoryDAO"></property>
+	</bean>
+
+
+	<!-- 타임 게시글 -->
+
+	<bean name="/storytimelist.htm" class="com.team01.story.StoryTimeListC">
+		<property name="rdao" ref="ReservePostDAO"></property>
+		<property name="pdao" ref="PostDAO"></property>
+	</bean>
+	
+	<bean name="/mystorypunglist.htm" class="com.team01.story.StoryTimePungListC"></bean>
+	
+	<bean name="/mystorypung.htm" class="com.team01.story.StoryTimePungC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	
+	<bean name="/mystorypungform.htm" class="com.team01.story.StoryTimePungFormC"></bean>
+
+	<bean name="/mystorypungmodify.htm" class="com.team01.story.StoryTimePungModifyC"></bean>
+	
+	<bean name="/pungmateadd.htm" class="com.team01.story.StoryTimePungMateAddC"></bean>
+	
+	<bean name="/mystorypungmodifyresult.htm" class="com.team01.story.StoryTimePungModifyResultC">
+			<property name="dao" ref="PostDAO"></property>
+	</bean>
+	<bean name="/pungpostdelete.htm" class="com.team01.story.StoryTimePungDeleteResultC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+
+	<!-- 정보 업데이트 -->
+	<bean name="/memberremoveform.htm" class="com.team01.member.MemberRemoveFormC"></bean>
+
+	<bean name="/memberremove.htm" class="com.team01.member.MemberRemoveC">
+		<property name="dao" ref="MemberDAO"></property>
+	</bean> 
+
+	
+
+	<bean name="/mateajax.htm" class="com.team01.story.MateAjaxC"></bean>
+	<bean name="/mateajax2.htm" class="com.team01.story.MateAjax2C">
+		<property name="dao" ref="mateDAO"></property>
+	</bean>
+	<bean name="/delMate.htm" class="com.team01.story.DelMateC">
+		<property name="dao" ref="mateDAO"></property>
+	</bean>
+	
+
+
+	<bean name="/pwcheckform.htm" class="com.team01.member.PwCheckFormC"></bean>
+	<bean name="/pwcheck.htm" class="com.team01.member.PwCheckC">
+		<property name="dao" ref="PwCheckDAO"></property>
+	</bean>
+
+
+	
+
+	
+	<!-- 카테고리 저장 관련 -->
+	<bean name="/categorymateadd.htm" class="com.team01.member.CategoryMateAddC">
+		<property name="dao" ref="mateDAO"></property>
+	</bean>
+	<bean name="/categorymateaddlist.htm"  class="com.team01.member.CategoryMateAddListC">
+			<property name="dao" ref="mateDAO"></property>	
+	</bean>
+	
+
+	<bean name="/popup.htm" class="com.team01.login.PopC"></bean>
+	  
+
+	<bean name="/categoryMateSearch.htm"  class="com.team01.member.CategoryMateSearchC">
+			<property name="dao" ref="mateDAO"></property>	
+	</bean>
+
+	
+	<!-- 이메일/비밀번호 찾기 -->
+	 <bean name="/find.htm" class="com.team01.login.MemberFindC"></bean> 
+	 <bean name="/emailfind.htm" class="com.team01.login.EmailFindC"></bean>
+	 <bean name="/pwfind.htm" class="com.team01.login.PwFindC"></bean>
+	 
+	 <bean name="/emailform.htm" class="com.team01.login.EmailFormC">
+	 		<property name="dao" ref="LoginDAO"></property>
+	 </bean>
+	 
+	 <bean name="/mailcheck.htm" class="com.team01.member.MailCheckC">
+	 	<property name="dao" ref="MemberDAO" />
+	 </bean>
+	 <bean name="/pwresult.htm" class="com.team01.login.PwFindResultC">
+	 	<property name="dao" ref="MemberDAO" />
+	 </bean>
+	
+<!--	<bean name="/emailfindresult.htm" class="com.team01.login.EmailFindResultC"/>
+ 	<bean name="/noresult.htm" class="com.team01.login.NoResultC"/>
+ 	-->
+	 
+	 
+	 <!-- 내 스토리 -->	
+	 <bean name="/myStory.htm" class="com.team01.story.MyListC">
+	 	<property name="dao" ref="PostDAO"></property>
+	 </bean>
+	 <bean name="/myStoryList.htm" class="com.team01.story.MyStoryListC">
+	 	<property name="dao" ref="PostDAO"></property>
+	 	<property name="rDao" ref="ReplyDAO" />
+ 	 	<property name="likeDAO" ref="LikeDAO"></property>	 
+	    <property name="hateDAO" ref="HateDAO"></property>
+	 </bean>
+	 
+	 <!-- 내스토리 예약 글 -->
+	 <bean name="/myStoryreserve.htm" class="com.team01.story.MyListReserveC">
+	 	<property name="dao" ref="ReservePostDAO"></property>
+	 </bean>
+	 
+	 <bean name="/myStoryreserveform.htm" class="com.team01.story.MyListReserveFormC"/>
+	 
+	 <bean name="/myStoryListReserve.htm" class="com.team01.story.MyStoryListReserveC">
+	 	<property name="dao" ref="ReservePostDAO"></property>
+	 	<property name="rDao" ref="ReplyDAO" />
+	 </bean>
+	 
+	 <bean name="/reservemateadd.htm"  class="com.team01.story.ReserveMateTagC"/>
+	 
+	 <bean name="/myStoryListReserveModify.htm" class="com.team01.story.MyListReserveModifyFormC">
+		 <property name="dao" ref="ReservePostDAO"></property>
+	 </bean>
+	 
+	 <bean name="/postreservedelete.htm" class="com.team01.story.MyListReserveDeleteC">
+	 	<property name="dao" ref="ReservePostDAO"></property>
+	 </bean>	 
+	 
+	 <bean name="/postcardreservemodify.htm" class="com.team01.story.PostCardReserveModifyC"/>
+	 
+	 
+	 <!-- 내 스토리의 사진 view -->
+	 <bean name="/mystoryphoto.htm" class="com.team01.story.MystoryListRightC">	 
+	 <property name="dao" ref="PostPhotoDAO"></property>		 
+	 </bean>
+	 
+	 <!-- 내 스토리의 친구 view -->
+	 <bean name="/mystoryfriend.htm" class="com.team01.story.MystoryListRightFreindC">
+		 <property name="mateDAO" ref="mateDAO"></property>	 
+	 </bean>
+	 
+	 <!-- 스토리 - 사진 -->
+	 <bean name="/storymyphoto.htm" class="com.team01.story.StoryMyPhotoC">
+	  	<property name="dao" ref="PostPhotoDAO"></property>	
+	 </bean>
+	 <bean name="/storymyphotolist.htm" class="com.team01.story.StoryMyPhotoListC">
+	 	<property name="dao" ref="PostPhotoDAO"></property>	 
+	 </bean>
+	 
+	   <bean name="/storymyphotozoom.htm" class="com.team01.story.StoryMyPhotoZoomC"></bean>  
+	 
+
+ 
+	<!--  정보 업데이트 -->
+				
+	
+	
+ 	<!-- 친구찾기/결과 -->
+ 	 
+	<bean id="matefindDAO" class="com.team01.dao.MateFindDAO">
+		<property name="dataSource" ref="oracleDataSource"></property>
+	</bean>
+	
+ 	<bean name="/matefind.htm" class="com.team01.mate.MateFindC">
+ 		<property name="dao" ref="matefindDAO"></property>
+ 	</bean>
+ 	
+ 	<bean name="/materequest.htm" class="com.team01.mate.MateRequestC">
+ 		<property name="dao" ref="matefindDAO"></property>
+ 	</bean>
+
+ 	<bean name="/matepopup.htm" class="com.team01.mate.MatePopupC">
+ 	</bean>
+	
+	   
+	<bean name="/alertpopup.htm" class="com.team01.mate.MateResponseC" />
+
+ 	<bean name="/mateok.htm" class="com.team01.mate.MateOkC">
+ 		<property name="dao" ref="matefindDAO"></property>
+ 	</bean>
+
+
+
+ 
+	<!-- 인덱스 처리 -->
+	<bean name="/index.htm" class="com.team01.template.IndexC" />
+	<!-- 서비스 예정 처리 -->
+	<bean name="/comingsoon.htm" class="com.team01.template.ComingSoonC" />
+	<!-- 에러페이지 처리 -->
+	<bean name="/underconstruction.htm" class="com.team01.template.UnderConstructionC" />
+	
+	<!-- 친구 Story-->
+	<bean name="/matestory.htm" class="com.team01.mateStory.MateStoryC">
+		<property name="dao" ref="PostPhotoDAO"></property>
+	</bean>
+
+	<bean name="/matestorymate.htm" class="com.team01.mateStory.MateStoryFsC">
+		<property name="dao" ref="PostPhotoDAO"></property>
+		<property name="mateDao" ref="mateDAO"></property>
+	</bean>
+	
+	<bean name="/matestoryphoto.htm" class="com.team01.mateStory.MateStoryPhoC">
+		<property name="dao" ref="PostPhotoDAO"></property>
+	</bean>
+	<bean name="/mateStory.htm" class="com.team01.mateStory.MateListC">
+		<property name="dao" ref="PostDAO"></property>
+	</bean>
+	<bean name="/mateStoryList.htm" class="com.team01.mateStory.MateStoryListC">
+	 	<property name="dao" ref="PostDAO"></property>
+	 	<property name="rDao" ref="ReplyDAO" />
+ 	 	<property name="likeDAO" ref="LikeDAO"></property>	 
+	    <property name="hateDAO" ref="HateDAO"></property>
+	 </bean>
+
+</beans>
