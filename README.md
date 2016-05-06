@@ -30,6 +30,6 @@ It has some bugs that DB connection when replies are matching with posts. Howeve
 It is a my one of portfolio.
 We used to private SVN when we made it, but now, I share it on GitHub.
 
-[The project proposal (PDF)](https://www.dropbox.com/s/figs4e985rr67ic/%5B2.0%5D%20%EC%96%91%EC%97%B0%EA%B7%9C%20-%20Time%20Control%20SNS%20%28%EA%B8%B0%ED%9A%8D%EC%84%9C%29.pdf?dl=0")
+[The project proposal (PDF / Korean)](https://www.dropbox.com/s/figs4e985rr67ic/%5B2.0%5D%20%EC%96%91%EC%97%B0%EA%B7%9C%20-%20Time%20Control%20SNS%20%28%EA%B8%B0%ED%9A%8D%EC%84%9C%29.pdf?dl=0")
 
-[The Portfolio (PDF)](https://www.dropbox.com/s/b2so44ftnt76oe4/%5B3.0%5D%20%EC%96%91%EC%97%B0%EA%B7%9C%20-%20Time%20Control%20SNS%20%28%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%29.pdf?dl=0)
+[The Portfolio (PDF / Korean)](https://www.dropbox.com/s/b2so44ftnt76oe4/%5B3.0%5D%20%EC%96%91%EC%97%B0%EA%B7%9C%20-%20Time%20Control%20SNS%20%28%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%29.pdf?dl=0)
