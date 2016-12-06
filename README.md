@@ -1,6 +1,6 @@
 # TimeControl
 
-It was made in Dec 01, 2014 by Yeongyu Yang, Hyemi Park, Joohee Choi, Sami Kim, Myeongjin Jung.
+It was made in Dec 01, 2014 by Yeongyu Yang, Hyemi Park, Joohee Choi, Sami Kim, and Myeongjin Jung.
 
 Its subject is social networking service with time control.
 Its mean is basicaly same as general social network service but we made some functions for user.
